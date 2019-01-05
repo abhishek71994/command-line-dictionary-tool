@@ -12,7 +12,6 @@ commander
     .alias('d')
     .description('Returns the definition of a word')
     .action((word)=>{
-        console.log("Action works");
         def(word)
     })
 
