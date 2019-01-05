@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/abhishek71994/command-line-dictionary-tool/issues"
   },
-  "homepage": "https://github.com/abhishek71994/command-line-dictionary-tool#readme"
+  "homepage": "https://github.com/abhishek71994/command-line-dictionary-tool#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9"
+  }
 }
