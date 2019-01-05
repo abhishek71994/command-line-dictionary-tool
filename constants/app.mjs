@@ -1,2 +1,4 @@
 export const APP_ID = "9ac9a132";
 export const APP_KEYS = "7a8a755464e04572933525c8467773ff";
+export const BIGHUGELAB_API_KEY = "5c73e41079a4e5c015392413dcf9a106";
+export const RAPID_API_KEY = "04670e7327msh76887780977d071p15c63ajsn062e27eaad87";

@@ -1,6 +1,6 @@
 import commander from 'commander';
 import "isomorphic-fetch";
-import { def } from './index.mjs';
+import { def,syn,ant } from './index.mjs';
 
 commander
     .version('1.0.0')
@@ -14,5 +14,19 @@ commander
     .action((word)=>{
         def(word)
     })
+commander
+    .command('syn <word>')
+    .alias('d')
+    .description('Returns the synonyms of a word')
+    .action((word) => {
+        syn(word)
+    })
 
+commander
+    .command('ant <word>')
+    .alias('d')
+    .description('Returns the antonymns of a word')
+    .action((word) => {
+        ant(word)
+    })
 commander.parse(process.argv);
