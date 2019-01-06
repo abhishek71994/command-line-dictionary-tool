@@ -5,9 +5,13 @@ import {
     APP_KEYS,
     RAPID_API_KEY
 } from './constants/app.mjs';
+import inquirer from 'inquirer';
 var app = express();
 
 var port = process.env.PORT || 3001 ;
+
+
+
 export const def = async (word) => {
     await fetch(`https://od-api.oxforddictionaries.com/api/v1/entries/en/${word}`,{
         headers: {
@@ -108,9 +112,45 @@ export const ex = async(word) => {
             return error;
         })
 }
-export const wordOfDay = (word) => {
-
+const guess = (questions,guessWord,word) => {
+    inquirer.
+    prompt(questions)
+        .then(answers => {
+            guessWord = answers.guess;
+            console.log(answers.guess);
+            if (guessWord === word) {
+                console.log("Well done!");
+            } else {
+                choice();
+            }
+    })
 }
-export const wordGame = (word) => {
-
+const choice = () =>{
+    const choices = [{
+        type: 'list',
+        name: 'guess',
+        message: "Wrong answer :( Select a choice",
+        choices:["Retry","Get a Hint","Quit"]
+    }]
+    inquirer.
+    prompt(choices)
+    .then(answers => {
+        console.log(answers);
+    });
+}
+export const wordGame = async (word) => {
+    console.log("Here are the clues...");
+    await syn(word);
+    await ant(word);
+    await ex(word);
+    console.log(word);
+    const questions = [
+        {
+            type:'input',
+            name:'guess',
+            message: "Enter your guess"
+        }
+    ];
+    var guessWord = '';
+    guess(questions,guessWord,word);
 }
