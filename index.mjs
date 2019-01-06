@@ -112,7 +112,13 @@ export const ex = async(word) => {
             return error;
         })
 }
-const guess = (questions,guessWord,word) => {
+const guess = (word) => {
+    const questions = [{
+        type: 'input',
+        name: 'guess',
+        message: "Enter your guess"
+    }];
+    var guessWord = '';
     inquirer.
     prompt(questions)
         .then(answers => {
@@ -121,11 +127,23 @@ const guess = (questions,guessWord,word) => {
             if (guessWord === word) {
                 console.log("Well done!");
             } else {
-                choice();
+                choice(word);
             }
     })
 }
-const choice = () =>{
+const jamble = (word)=>{
+    const a = word.split(""),
+    n = a.length;
+    for (var i = n - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i];
+        a[i] = a[j];
+        a[j] = tmp;
+    }
+
+    return a.join("");
+}
+const choice = (word) =>{
     const choices = [{
         type: 'list',
         name: 'guess',
@@ -134,8 +152,23 @@ const choice = () =>{
     }]
     inquirer.
     prompt(choices)
-    .then(answers => {
-        console.log(answers);
+    .then(async answers => {
+        let choice = answers.guess;
+        if(choice==="Retry"){
+            guess(word);
+        }
+        else if (choice === "Get a Hint") {
+            console.log(jamble(word));
+            guess(word);
+        }
+        else if (choice === "Quit") {
+            console.log("\n ------FULL DEFINITION------ \n");
+            console.log("word :", word);
+            await def(word);
+            await syn(word);
+            await ant(word);
+            await ex(word);
+        }
     });
 }
 export const wordGame = async (word) => {
@@ -144,13 +177,5 @@ export const wordGame = async (word) => {
     await ant(word);
     await ex(word);
     console.log(word);
-    const questions = [
-        {
-            type:'input',
-            name:'guess',
-            message: "Enter your guess"
-        }
-    ];
-    var guessWord = '';
-    guess(questions,guessWord,word);
+    guess(word);
 }
