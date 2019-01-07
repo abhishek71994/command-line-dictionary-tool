@@ -19,7 +19,6 @@
   "dependencies": {
     "commander": "^2.19.0",
     "es6-promise": "^4.2.5",
-    "express": "^4.16.4",
     "inquirer": "^6.2.1",
     "isomorphic-fetch": "^2.2.1",
     "nodemon": "^1.18.9"

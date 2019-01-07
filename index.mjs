@@ -1,16 +1,10 @@
 'use strict'
-import express from 'express';
 import {
     APP_ID,
     APP_KEYS,
     RAPID_API_KEY
 } from './constants/app.mjs';
 import inquirer from 'inquirer';
-var app = express();
-
-var port = process.env.PORT || 3001 ;
-
-
 
 export const def = async (word) => {
     await fetch(`https://od-api.oxforddictionaries.com/api/v1/entries/en/${word}`,{
