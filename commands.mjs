@@ -102,7 +102,7 @@ commander
         ex(word)
     })
 commander
-    .command('dict dict <word>')
+    .command('dict <word>')
     .alias('fd')
     .description('Returns the full definition of a word')
     .action(async (word) => {

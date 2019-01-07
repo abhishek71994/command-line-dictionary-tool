@@ -80,9 +80,15 @@ export const ant = async(word) => {
         .then(res => res.json())
         .then(data => {
             console.log("\n ----- Antonyms ------ \n");
-            data.antonyms.map(antonym=>{
-                console.log("--",antonym);
-            })
+            if(data.antonyms.length !== 0){
+                data.antonyms.map(antonym => {
+                    console.log("--", antonym);
+                })
+            }
+            else{
+                console.log("No antonyms available")
+            }
+            
             console.log("\n ----------------------- \n");
             return 1;
         })
@@ -158,7 +164,7 @@ const choice = (word) =>{
             guess(word);
         }
         else if (choice === "Get a Hint") {
-            console.log(jamble(word));
+            console.log("The jumbled word is: ",jamble(word));
             guess(word);
         }
         else if (choice === "Quit") {
@@ -176,6 +182,5 @@ export const wordGame = async (word) => {
     await syn(word);
     await ant(word);
     await ex(word);
-    console.log(word);
     guess(word);
 }
